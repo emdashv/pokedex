@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  abilities: MyString
+  types: MyString
+  weaknesses: MyString
+
+two:
+  name: MyString
+  description: MyText
+  abilities: MyString
+  types: MyString
+  weaknesses: MyString

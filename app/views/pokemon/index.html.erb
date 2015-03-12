@@ -1,0 +1,13 @@
+<h1>Pokemon</h1>
+
+<%= link_to 'New Pokemon', '/pokemon/new' %>
+
+<ul class="roster">
+    <% @pokemon_list.each do |pokemon| %>
+    <li>
+        <h4><%= pokemon.name %></h4>
+        <p><%= pokemon.description %></p>
+        <p><%= link_to 'Show details', '/pokemon/' + String(pokemon.id) %></p>
+    </li>
+    <% end %>
+</ul>
