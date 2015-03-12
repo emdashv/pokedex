@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
 
   resources :pokemon
 
   root 'pokemon#index'
 
-=======
->>>>>>> a6cc01766f825f7b4e8ada879060060110494ba1
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
