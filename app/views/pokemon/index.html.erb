@@ -5,6 +5,7 @@
 <ul class="roster">
     <% @pokemon_list.each do |pokemon| %>
     <li>
+        <%= image_tag pokemon.image_url.to_s, class:'avatar' %>
         <h4><%= pokemon.name %></h4>
         <p><%= pokemon.description %></p>
         <p><%= link_to 'Show details', '/pokemon/' + String(pokemon.id) %></p>

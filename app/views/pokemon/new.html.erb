@@ -10,6 +10,9 @@
 
         <%= form.label :description %>
         <%= form.text_area :description %>
+
+        <%= form.label :image %>
+        <%= form.file_field :image %>
     </fieldset>
 
     <fieldset>
@@ -18,18 +21,16 @@
 
         <label>Type(s)</label>
         <fieldset class="block-set">
-            <p><%= form.check_box :type_bug %> Bug</p>
-            <p><%= form.check_box :type_dragon %> Dragon</p>
-            <p><%= form.check_box :type_fairy %> Fairy</p>
-            <p><%= form.check_box :type_fighting %> Fighting</p>
+            <% @types.each do |type| %>
+                <p><%= form.check_box 'type_' + type %> <%= type.capitalize() %></p>
+            <% end %>
         </fieldset>
 
         <label>Weakness(es)</label>
         <fieldset class="block-set">
-            <p><%= form.check_box :weak_bug %> Bug</p>
-            <p><%= form.check_box :weak_dragon %> Dragon</p>
-            <p><%= form.check_box :weak_fairy %> Fairy</p>
-            <p><%= form.check_box :weak_fighting %> Fighting</p>
+            <% @types.each do |weakness| %>
+                <p><%= form.check_box 'weak_' + weakness %> <%= weakness.capitalize() %></p>
+            <% end %>
         </fieldset>
     </fieldset>
 

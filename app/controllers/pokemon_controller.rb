@@ -1,4 +1,6 @@
 class PokemonController < ApplicationController
+  @@types = ["bug", "dragon", "ice", "fighting", "fire", "flying", "grass", "ghost", "ground", "electric", "normal", "poison", "psychic", "rock", "water"]
+
   def index
       @pokemon_list = Pokemon.all
   end
@@ -12,10 +14,9 @@ class PokemonController < ApplicationController
      ## Generate abilities list string
      new_pokemon["abilities"] = p["abilities"].split("\r\n").join(", ")
      ## Generate types list string
-     ti = ["bug", "dragon", "fairy", "fighting"]
      new_pokemon["types"] = ""
      isFirst = true
-     for x in ti
+     for x in @@types
          if (p["type_" + x] == "1")
              if (!isFirst)
                  new_pokemon["types"] += ", "
@@ -25,10 +26,9 @@ class PokemonController < ApplicationController
          end
      end
      ## Generate weaknesses list string
-     wi = ["bug", "dragon", "fairy", "fighting"]
      new_pokemon["weaknesses"] = ""
      isFirst = true
-     for x in wi
+     for x in @@types
          if (p["weak_" + x] == "1")
              if (!isFirst)
                  new_pokemon["weaknesses"] += ", "
@@ -37,6 +37,8 @@ class PokemonController < ApplicationController
              isFirst = false
          end
      end
+     ## Add image
+     new_pokemon["image"] = p["image"]
 
      @pokemon = Pokemon.new(new_pokemon)
 
@@ -48,6 +50,7 @@ class PokemonController < ApplicationController
   end
 
   def new
+      @types = @@types
   end
 
   def show
