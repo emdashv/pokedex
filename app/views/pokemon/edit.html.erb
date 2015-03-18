@@ -1,0 +1,65 @@
+<%= link_to 'Back', pokemon_index_path %>
+
+<h1>Edit Pokemon</h1>
+
+<%= form_for @pokemon, url: pokemon_path(@pokemon), method: :patch do |form| %>
+
+    <% if @pokemon.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@pokemon.errors.count, "error") %> prevented this Pokemon from being saved.
+      </h2>
+      <ul>
+        <% @pokemon.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <fieldset>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+
+        <%= image_tag @pokemon.image_url.to_s, class:'avatar' %>
+        <%= form.label :image %>
+        <%= form.file_field :image %>
+    </fieldset>
+
+    <fieldset>
+        <label for="pokemon[abilities]">Abilities (one per line)</label>
+        <%= form.text_area :abilities %>
+
+        <label>Type(s)</label>
+        <fieldset class="block-set">
+            <% for type in @types %>
+                <p>
+                    <% if @types_on[type]%>
+                        <input type="checkbox" checked name="pokemon[<%= 'type_' + type %>]" id="pokemon_<%= 'type_' + type %>" /><%= type.capitalize() %>
+                    <% else %>
+                        <input type="checkbox" name="pokemon[<%= 'type_' + type %>]" id="pokemon_<%= 'type_' + type %>" /><%= type.capitalize() %>
+                    <% end %>
+                </p>
+            <% end %>
+        </fieldset>
+
+        <label>Weakness(es)</label>
+        <fieldset class="block-set">
+            <% for weakness in @types %>
+            <p>
+                <% if @weaknesses_on[weakness]%>
+                    <input type="checkbox" checked name="pokemon[<%= 'weak_' + weakness %>]" id="pokemon_<%= 'weak_' + weakness %>" /><%= weakness.capitalize() %>
+                <% else %>
+                    <input type="checkbox" name="pokemon[<%= 'weak_' + weakness %>]" id="pokemon_<%= 'weak_' + weakness %>" /><%= weakness.capitalize() %>
+                <% end %>
+            </p>
+            <% end %>
+        </fieldset>
+    </fieldset>
+
+    <%= form.submit %>
+
+<% end %>

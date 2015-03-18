@@ -3,12 +3,25 @@
 <%= link_to 'New Pokemon', '/pokemon/new' %>
 
 <ul class="roster">
-    <% @pokemon_list.each do |pokemon| %>
+    <% for pokemon in @pokemon_list %>
     <li>
-        <%= image_tag pokemon.image_url.to_s, class:'avatar' %>
-        <h4><%= pokemon.name %></h4>
-        <p><%= pokemon.description %></p>
-        <p><%= link_to 'Show details', '/pokemon/' + String(pokemon.id) %></p>
+        <section>
+            <%= image_tag pokemon.image_url.to_s, class:'avatar' %>
+        </section>
+        <section>
+            <h4><%= pokemon.name %></h4>
+            <p>(<%= pokemon.types %>)</p>
+            <p><%= pokemon.description %></p>
+            <p>
+                <%= link_to 'Show details', '/pokemon/' + String(pokemon.id) %>
+                &nbsp;
+                <%= link_to 'Edit', '/pokemon/' + String(pokemon.id) + '/edit' %>
+                &nbsp;
+                <%= link_to 'Delete', '/pokemon/' + String(pokemon.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+            </p>
+        </section>
     </li>
     <% end %>
 </ul>

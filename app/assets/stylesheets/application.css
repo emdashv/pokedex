@@ -59,15 +59,34 @@ button, input[type="submit"]
 {
     padding: 0px;
 }
-.roster li
+.roster > li
 {
     list-style-type: none;
     border: solid 2px #323232;
     border-radius: 5px;
     margin: 7px 0px 7px 0px;
     padding: 5px;
+    display: flex;
+    flex-flow: row;
+}
+.roster > li > section
+{
+    flex: 2;
+}
+.roster > li > section:first-child
+{
+    flex: 1;
+    margin: 7px;
+    max-width: 107px;
 }
 .avatar
 {
-    max-height: 100px;
+    height: 100px;
+    width: 100px;
+    background: #eee;
+    display: inline;
+}
+.avatar[src=""]
+{
+    border: dotted 1px #aaa;
 }

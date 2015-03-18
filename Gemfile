@@ -40,3 +40,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # For image uploading
 gem 'carrierwave'
+
+# For debugging
+gem 'pry'

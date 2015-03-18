@@ -2,7 +2,21 @@
 
 <h1>New Pokemon</h1>
 
-<%= form_for :pokemon, url: '/pokemon' do |form| %>
+<%= form_for @pokemon, url: '/pokemon' do |form| %>
+
+    <!--Error messages-->
+    <% if @pokemon.errors.any? %>
+    <div class="msg-err">
+      <h2>
+        <%= pluralize(@pokemon.errors.count, "error") %> prevented this Pokemon from being saved:
+      </h2>
+      <ul>
+        <% @pokemon.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
 
     <fieldset>
         <%= form.label :name %>
@@ -21,15 +35,15 @@
 
         <label>Type(s)</label>
         <fieldset class="block-set">
-            <% @types.each do |type| %>
-                <p><%= form.check_box 'type_' + type %> <%= type.capitalize() %></p>
+            <% for type in @types %>
+                <p><input type="checkbox" name="pokemon[<%= 'type_' + type %>]" id="pokemon_<%= 'type_' + type %>" /><%= type.capitalize() %></p>
             <% end %>
         </fieldset>
 
         <label>Weakness(es)</label>
         <fieldset class="block-set">
-            <% @types.each do |weakness| %>
-                <p><%= form.check_box 'weak_' + weakness %> <%= weakness.capitalize() %></p>
+            <% for weakness in @types %>
+            <p><input type="checkbox" name="pokemon[<%= 'weak_' + weakness %>]" /><%= weakness.capitalize() %></p>
             <% end %>
         </fieldset>
     </fieldset>
